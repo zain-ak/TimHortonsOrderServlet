@@ -14,6 +14,8 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "Order", urlPatterns = {"/order"})
 public class Order extends HttpServlet {
+  public static double totalEarned = 0;
+
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
     //super.doGet(req, resp);
@@ -98,20 +100,28 @@ public class Order extends HttpServlet {
     switch (coffeeSize) {
       case "s":
         price = 2 * numCoffee * 1.13;
-        return "<p style='color: white; font-weight: bold; font-size: 2.0em;'>Total Price: " + numCoffee + " coffee(s) x C$2.00 (incl. tax) = $" +
-          (Math.round(price * 100.0) / 100.0) + "</p>";
+        totalEarned += price;
+        return "<p style='color: white; font-weight: bold; font-size: 2.0em;'>Total Price: " + numCoffee + " coffee(s) x C$3.50 (incl. tax) = $" +
+                (Math.round(price * 100.0) / 100.0) + "</p><br><br><p style='color: white; font-weight: bold; font-size: 2.0em;'>Total Earned so far: $" +
+                (Math.round(totalEarned * 100.0) / 100.0) + "</p>";
       case "m":
         price = 2.5 * numCoffee * 1.13;
-        return "<p style='color: white; font-weight: bold; font-size: 2.0em;'>Total Price: " + numCoffee + " coffee(s) x C$2.50 (incl. tax) = $" +
-          (Math.round(price * 100.0) / 100.0) + "</p>";
+        totalEarned += price;
+        return "<p style='color: white; font-weight: bold; font-size: 2.0em;'>Total Price: " + numCoffee + " coffee(s) x C$3.50 (incl. tax) = $" +
+                (Math.round(price * 100.0) / 100.0) + "</p><br><br><p style='color: white; font-weight: bold; font-size: 2.0em;'>Total Earned so far: $" +
+                (Math.round(totalEarned * 100.0) / 100.0) + "</p>";
       case "l":
         price = 3 * numCoffee * 1.13;
-        return "<p style='color: white; font-weight: bold; font-size: 2.0em;'>Total Price: " + numCoffee + " coffee(s) x C$3.00 (incl. tax) = $" +
-          (Math.round(price * 100.0) / 100.0) + "</p>";
+        totalEarned += price;
+        return "<p style='color: white; font-weight: bold; font-size: 2.0em;'>Total Price: " + numCoffee + " coffee(s) x C$3.50 (incl. tax) = $" +
+                (Math.round(price * 100.0) / 100.0) + "</p><br><br><p style='color: white; font-weight: bold; font-size: 2.0em;'>Total Earned so far: $" +
+                (Math.round(totalEarned * 100.0) / 100.0) + "</p>";
       case "xl":
         price = 3.5 * numCoffee * 1.13;
+        totalEarned += price;
         return "<p style='color: white; font-weight: bold; font-size: 2.0em;'>Total Price: " + numCoffee + " coffee(s) x C$3.50 (incl. tax) = $" +
-          (Math.round(price * 100.0) / 100.0) + "</p>";
+          (Math.round(price * 100.0) / 100.0) + "</p><br><br><p style='color: white; font-weight: bold; font-size: 2.0em;'>Total Earned so far: $" +
+          (Math.round(totalEarned * 100.0) / 100.0) + "</p>";
     }
     return null;
   }
