@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "Order", urlPatterns = {"/order"})
 public class Order extends HttpServlet {
-  public static double totalEarned = 0;
+  private static double totalEarned = 0;
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
